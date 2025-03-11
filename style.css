@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#startSelection {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.test {
+    text-align: center;
+    padding: 50px;
+    background: #000;
+    text-align: center;
+    color: #fff;
+}
+
+#selection-box {
+    position: fixed;
+    border: 2px dashed red;
+    background: rgba(255, 0, 0, 0.1);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+
+.bug-finder-container {
+    position: fixed;
+    z-index: 9999999999999999999;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: hwb(0deg 0% 100%);
+}
+
+.bug-finder-canvas-container {
+    padding: 15px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 100px);
+}
+
+.bug-finder-controls {
+    height: 70px;
+    background: #d7d7d7;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+    align-items: center;
+}
+
+.bug-finder-controls button.bug-finder-btn {
+    padding: 15px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: 700;
+    border: 0px;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+/* .bug-finder-container{ display: none; } */
