@@ -1,7 +1,8 @@
 import { startSelection } from "./functions/captureScreen";
 import { CreatewidgetButton } from "./functions/uiUtils";
 
-export default util = {
+/* @preserve */
+const util = {
     widgetButton() {
         CreatewidgetButton({
             id: "startSelection1",
@@ -30,3 +31,5 @@ export default util = {
         }
     }
 };
+
+export default util;

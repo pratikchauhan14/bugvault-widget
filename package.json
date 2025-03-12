@@ -5,7 +5,8 @@
   "scripts": {
     "clean": "rm -rf .parcel-cache dist",
     "dev": "npm run clean && parcel serve index.html",
-    "build": "npm run clean && parcel build index.html"
+    "build": "npm run clean && parcel build index.html",
+    "serve": " npm run build && npx serve dist"
   },
   "dependencies": {
     "fabric": "^5.5.1",
@@ -13,10 +14,6 @@
   },
   "devDependencies": {
     "buffer": "^6.0.3",
-    "parcel": "^2.10.0",
-    "postcss": "^8.5.3",
-    "postcss-js": "^4.0.1",
-    "postcss-modules": "^6.0.1",
-    "style-inject": "^0.3.0"
+    "parcel": "^2.10.0"
   }
 }
