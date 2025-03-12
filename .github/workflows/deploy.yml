@@ -1,0 +1,35 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Change this if your default branch is different
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18  # Adjust if needed
+
+      - name: Install dependencies
+        run: npm ci  # Ensures a clean install
+
+      - name: Build the project
+        run: npm run build  # Runs "parcel build index.html"
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Deploy to the `gh-pages` branch
+          folder: dist  # Deploy the built `dist/` folder
+          clean: true  # Removes old files before deploying
