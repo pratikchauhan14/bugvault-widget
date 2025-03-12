@@ -5,8 +5,8 @@
   "scripts": {
     "clean": "rm -rf .parcel-cache dist",
     "dev": "npm run clean && parcel serve index.html",
-    "build": "npm run clean && parcel build index.html",
-    "serve": " npm run build && npx serve dist"
+    "build": "npm run clean && parcel build index.html --public-url ./",
+    "serve": "npm run build && npx serve dist"
   },
   "dependencies": {
     "fabric": "^5.5.1",
