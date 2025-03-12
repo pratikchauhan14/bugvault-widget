@@ -2,16 +2,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-#startSelection {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
 
 .test {
     text-align: center;
@@ -68,5 +58,3 @@ body {
     border-radius: 7px;
     font-size: 16px;
 }
-
-/* .bug-finder-container{ display: none; } */

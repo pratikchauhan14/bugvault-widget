@@ -3,11 +3,15 @@ import { createFabricCanvas } from "./fabricCanvas.js";
 import { addControlButton, createBugFinderUI } from "./uiUtils.js";
 import { disableArrowMode, enableArrowDrawing } from "./arrowTool.js"; // ✅ Import the function
 import { disableTextMode, enableTextTool } from "./textTool.js"; // ✅ Import the text tool function
+import util from "../util.js";
 
 
 let selectionBox = null;
 let startX = 0, startY = 0;
 let isSelecting = false;
+
+
+
 
 export function startSelection() {
     document.addEventListener("mousedown", startSelectionBox);
@@ -50,13 +54,8 @@ function captureSelection() {
     isSelecting = false;
     document.body.style.userSelect = "auto";
 
-    
-
     if (!selectionBox) return;
     const { left, top, width, height } = selectionBox.getBoundingClientRect();
-
-   
-    
     
     document.body.removeChild(selectionBox);
     selectionBox = null;
@@ -73,55 +72,68 @@ function captureSelection() {
     }).then(canvas => {
 
         createBugFinderUI("create");
-        document.querySelector(".bug-finder-container").style.display = "block";
 
         const fabricCanvas = createFabricCanvas(canvas);
 
-        console.log(width, height,canvas);
         
 
-    // ✅ First, ensure buttons are added to the DOM
-    addControlButton("toggleArrow", "Enable Arrow", () => {});
-    addControlButton("addText", "Add Text", () => {});
-    addControlButton("closePopup", "Close", () => {});
+        
+        Object.keys(util.control).forEach((key) => {
+            const button = util.control[key];
+            console.log(key,button);
+            //addControlButton(button.id, button.text, () => {});
 
-    // ✅ Wait for the UI to update, then attach event listeners
-        let arrowButton = document.getElementById("toggleArrow");
-        let textButton = document.getElementById("addText");
-        let closePopup = document.getElementById("closePopup");
+            let el = document.createElement("button");
+            el.id = button.id;
+            el.textContent = button.text;
+            
+            if(key == "arrow"){
+                
 
-        if (closePopup) {
-            closePopup.addEventListener("click", () => {
-                createBugFinderUI("remove");
-                //find startSelection button and add click event listeners startSelection
-                document.getElementById("startSelection").addEventListener("click", startSelection);
-            });
-        }
+                el.addEventListener("click", () => {
+                    console.log("Enable Arrow Clicked!");
+                    el.textContent = button.toggleText;
 
-        if (arrowButton) {
-            arrowButton.addEventListener("click", () => {
-                console.log("Enable Arrow Clicked!");
+                    disableTextMode(fabricCanvas);
+                    enableArrowDrawing(fabricCanvas);
+                });
+            }
 
-                // ✅ Disable text tool before enabling arrow mode
-                disableTextMode(fabricCanvas);
+            if(key == "addText"){
+                el.addEventListener("click", () => {
+                    console.log("Add Text Clicked!");
 
-                enableArrowDrawing(fabricCanvas);
-            });
-        } else {
-            console.error("Arrow button not found!");
-        }
+                    el.textContent = button.toggleText;
+                    disableArrowMode(fabricCanvas);
+                    enableTextTool(fabricCanvas);
+                });
+            }
 
-        if (textButton) {
-            textButton.addEventListener("click", () => {
-                console.log("Add Text Clicked!");
-                // ✅ Disable arrow mode before enabling text tool
-                disableArrowMode(fabricCanvas);
+            if (key == "closePopup") {
+                el.addEventListener("click", () => {
+                    console.log("Close Popup Clicked!");
 
-                enableTextTool(fabricCanvas);
-            });
-        } else {
-            console.error("Text button not found!");
-        }
+                    
+                    
+                    createBugFinderUI("remove");
+                    util.widgetButton();
+                    //document.getElementById("startSelection").addEventListener("click", startSelection);
+                });
+            }
+
+            
+
+            document.querySelector(".bug-finder-controls").appendChild(el);
+
+        });
+
+        
+
+        
+
+       
+
+        
         
     });
 

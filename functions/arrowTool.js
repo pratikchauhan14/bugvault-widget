@@ -1,3 +1,5 @@
+import util from "../util";
+
 export function enableArrowDrawing(fabricCanvas) {
     if (!fabricCanvas) {
         console.error("Fabric canvas is not initialized.");
@@ -15,7 +17,6 @@ export function enableArrowDrawing(fabricCanvas) {
     });
 
     // ✅ Set Arrow Mode ON with a Pen cursor
-    document.getElementById("toggleArrow").innerText = "Arrow Mode: ON";
     fabricCanvas.defaultCursor = "url('https://cdn-icons-png.flaticon.com/512/1828/1828884.png'), auto";
 
     // Start Drawing Arrow
@@ -59,7 +60,7 @@ export function enableArrowDrawing(fabricCanvas) {
 
 // Function to disable arrow mode after drawing
 export function disableArrowMode(fabricCanvas) {
-    document.getElementById("toggleArrow").innerText = "Enable Arrow";
+    document.getElementById(util.control.arrow.id).innerText = util.control.arrow.text;
     fabricCanvas.defaultCursor = "default";
     fabricCanvas.off("mouse:down");
     fabricCanvas.off("mouse:move");

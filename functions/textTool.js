@@ -1,3 +1,5 @@
+import util from "../util";
+
 export function enableTextTool(fabricCanvas) {
     if (!fabricCanvas) {
         console.error("Fabric canvas is not initialized.");
@@ -6,10 +8,11 @@ export function enableTextTool(fabricCanvas) {
 
     // ✅ Set cursor to text input mode
     fabricCanvas.defaultCursor = "text";
-    document.getElementById("addText").innerText = "Click to Add Text";
+    
 
     // ✅ Add event listener for text placement
     fabricCanvas.once("mouse:down", (event) => {
+        document.getElementById(util.control.addText.id).innerText = util.control.addText.text;
         const pointer = fabricCanvas.getPointer(event.e);
 
         // ✅ Detect background brightness at the clicked position
@@ -42,7 +45,7 @@ export function enableTextTool(fabricCanvas) {
 
 // ✅ Function to disable text mode after adding text
 export function disableTextMode(fabricCanvas) {
-    document.getElementById("addText").innerText = "Add Text";
+    document.getElementById(util.control.addText.id).innerText = util.control.addText.text;
     fabricCanvas.defaultCursor = "default";
     fabricCanvas.off("mouse:down");
     fabricCanvas.off("mouse:move");

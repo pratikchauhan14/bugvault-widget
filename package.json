@@ -13,6 +13,10 @@
   },
   "devDependencies": {
     "buffer": "^6.0.3",
-    "parcel": "^2.10.0"
+    "parcel": "^2.10.0",
+    "postcss": "^8.5.3",
+    "postcss-js": "^4.0.1",
+    "postcss-modules": "^6.0.1",
+    "style-inject": "^0.3.0"
   }
 }

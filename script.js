@@ -1,5 +1,12 @@
-import { createBugFinderUI, addControlButton } from "./functions/uiUtils.js";
-import { startSelection } from "./functions/captureScreen.js";
+
+import injectStyles from 'style-inject';
+import util from "./util.js";
+
+import * as style from "./style.css";
 
 
-addControlButton("startSelection", "Start Selection", startSelection);
+// Inject the CSS into the DOM
+injectStyles(style);
+
+
+util.widgetButton();
